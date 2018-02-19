@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SqlLitePOC"
+             x:Class="SqlLitePOC.AddProductsPage"
+			 Title="Add Product">
+
+	<StackLayout Spacing="10"
+                 Padding="20">
+		<Entry Text="{Binding ProductTitle}" Placeholder="Product Name" PlaceholderColor="Gray" />
+		<Entry Keyboard="Numeric" Text="{Binding ProductPrice}" Placeholder="Price" PlaceholderColor="Gray" />
+
+		<Button Text="Add Product"
+                TextColor="White"
+                BackgroundColor="DodgerBlue"
+                FontSize="22"
+                Command="{Binding AddCommand}" />
+	</StackLayout>
+
+</ContentPage>

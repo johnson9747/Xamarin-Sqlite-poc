@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Name="ProductsView"
+             x:Class="SqlLitePOC.ProductsPage"
+			 Title="Products">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Name="Create" Command="{Binding AddNewProductCommand}"></ToolbarItem>
+	</ContentPage.ToolbarItems>
+	<StackLayout Spacing="10"
+                 Padding="20">
+		<ListView ItemsSource="{Binding Products}" HasUnevenRows="True" 
+				 SeparatorColor="Black" SeparatorVisibility="Default" 
+				  IsPullToRefreshEnabled="True" 
+				  RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}" 
+				  >
+			<ListView.Header>
+				<Grid >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="5*" />
+						<ColumnDefinition Width="5*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<Label Text="Product" BackgroundColor="Blue" FontSize="Medium" TextColor="White" Grid.Column="0" Grid.Row="0" />
+					<Label Text="Price" BackgroundColor="Blue" FontSize="Medium" TextColor="White" Grid.Column="1" Grid.Row="0"/>
+				</Grid>
+			</ListView.Header>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.ContextActions>
+							<MenuItem Text="Delete" Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference ProductsView}}" CommandParameter="{Binding .}" />
+						</ViewCell.ContextActions>
+						<Grid  HorizontalOptions="Center" >
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="5*" />
+								<ColumnDefinition Width="5*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Label Text="{Binding Title}" 
+                               HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="Orange"  FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
+							<Label Text="{Binding Price}" Grid.Column="1" Grid.Row="0" TextColor="OrangeRed" FontSize="Medium" />
+							
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+	</StackLayout>
+</ContentPage>
